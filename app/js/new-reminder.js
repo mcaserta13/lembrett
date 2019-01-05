@@ -31,7 +31,6 @@ btnCancel.addEventListener('click', function() {
 function insertNewReminder(description, date, repeat){
     let stmt = db.prepare("INSERT INTO reminder (description, date_remind, repeat) VALUES (?,?, ?)")
     stmt.run(description, date, repeat, function(){
-        console.log("Novo lembrete criado com sucesso!")
         listReminders()
         launch_toast()
     })
@@ -50,7 +49,7 @@ function launch_toast() {
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
     setTimeout(function() {
         ipcRen.send('btnCancel')
-    }, 2000)
+    }, 2000)    
 }
 
 // Exibir toast de campos requeridos

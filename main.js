@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 var path = require('path')
 var shell = require('electron').shell
+const notifier = require('node-notifier');
 
 var mainWindow
 
@@ -9,7 +10,7 @@ function createWindow() {
     // Criar o componente da tela
     mainWindow = new BrowserWindow({ width: 350, height: 550, resizable: true, icon: path.join(__dirname, 'app/icon/reminder.ico') })
 
-    //mainWindow.setMenu(null)
+   // mainWindow.setMenu(null)
 
     // Carregar o arquivo index.html
     mainWindow.loadFile('index.html')
@@ -40,3 +41,11 @@ ipcMain.on('btnCreate', function (event, arg) {
 ipcMain.on('btnCancel', function (event, arg) {
     mainWindow.loadURL(`file://${__dirname}/index.html`)
 })
+
+// Notificar o SO
+/*
+    notifier.notify({
+    title: 'My notification',
+    message: 'Hello, there!'
+  });
+*/
