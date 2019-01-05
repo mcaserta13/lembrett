@@ -28,6 +28,7 @@ html {
 .content-center {
     margin: 0 auto;
     display: block;
+    text-align: center;
 }
 
 small {
