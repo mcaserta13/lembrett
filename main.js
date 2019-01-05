@@ -31,3 +31,12 @@ ipcMain.on('btnNewReminder', function (event, arg) {
 // Meus lembretes
 ipcMain.on('btnMyReminders', function (event, arg) {
 })
+
+// Criar novo lembrete
+ipcMain.on('btnCreate', function (event, arg) {
+})
+
+// Cancelar
+ipcMain.on('btnCancel', function (event, arg) {
+    mainWindow.loadURL(`file://${__dirname}/index.html`)
+})

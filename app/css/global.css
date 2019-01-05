@@ -36,6 +36,49 @@ small {
     font-size: 14px;
 }
 
+input[type="text"] {
+    padding: 5%;
+    font-family: ubuntu-bold;
+    background: none;
+    border: none;
+    color: white;
+    border-bottom: 1.3px solid white;
+}
+
+input:focus {
+    outline: none;
+}
+
+input[type="text"]::placeholder {
+    color: white;
+    opacity: 0.5;
+}
+
+input[type="date"], input[type="time"] {
+    border-radius: 5px;
+    padding: 5%;
+    font-family: ubuntu-bold;
+    font-size: 15px;
+    color: white;
+    background: none;
+    border: none;
+}
+
+input[type=date]::-webkit-inner-spin-button, input[type="time"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+
+.btn-transparent {
+    margin-top: 5%;
+    background-color: transparent;
+    border-radius: 5px;
+    color: white;
+    padding: 5%;
+    text-align: center;
+    cursor: pointer;
+}
+
 .btn-green {
     margin-top: 5%;
     background-color: #55efc4;
@@ -88,7 +131,6 @@ small {
 .col-2 {
     width: 20%;
 }
-
 
 /* Fontes */
 

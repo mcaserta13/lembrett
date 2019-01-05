@@ -13,10 +13,36 @@
         <h1>novo lembrete</h1>
     </div>
 
-    <div class="content-inline content content-center col-10">
-        <small>Selecione o dia e horário do seu lembrete, pode ser o horário de tomar o remédio, dia do aniversário de casamento ou até mesmo aquela reunião</small>
+    <div class="content content-center col-10">
+        <small>Selecione o horário do seu lembrete, pode ser o horário de tomar o remédio ou até mesmo aquela reunião</small>
+    </div>
+
+    <br>
+
+    <div class="content-center col-12">
+        <label class="col-6">Dia</label>
+        <input class="col-6" type="date">
+
+        <br>
+        <label class="col-6">Horário</label>
+        <input class="col-6" type="time">
+
+        <br><br>
+        <input type="text" placeholder="reunião, remédio...">
+    </div>
+
+    <br><br>
+    <div class="content-center btn-green col-8" id="btnCreate">
+        Criar
+    </div>
+
+    <div class="content-center btn-transparent col-8" id="btnCancel">
+        cancelar
     </div>
 </body>
+
+<!-- Materialize JS -->
+<script type="text/javascript" src="../../node_modules/materialize-css/dist/js/materialize.min.js"></script>
 
 <script>
     require('../js/new-reminder.js')
