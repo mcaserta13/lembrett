@@ -5,14 +5,13 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "postinstall": "electron-builder install-app-deps",
-    "dist": "build"
+    "rebuild": "electron-rebuild -f -w sqlite3"
   },
   "author": "Maurício Caserta",
   "license": "ISC",
   "devDependencies": {
     "electron": "^4.0.1",
-    "electron-builder": "^20.38.4"
+    "electron-rebuild": "^1.8.2"
   },
   "dependencies": {
     "sqlite3": "^4.0.4"
