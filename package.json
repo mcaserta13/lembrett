@@ -1,0 +1,14 @@
+{
+  "name": "lembrett",
+  "version": "1.0.0",
+  "description": "Aplicação para notificação de lembretes",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Maurício Caserta",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^4.0.1"
+  }
+}

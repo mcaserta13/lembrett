@@ -1,0 +1,63 @@
+html {
+    color: white;
+    font-family: ubuntu-regular;
+}
+
+.bg-default {
+    background-color: #74b9ff;
+}
+
+#title-bar {
+    -webkit-app-region: drag;
+    height: 24px; 
+    padding: none;
+    margin: 0px; 
+}
+
+#title-bar-btns {
+    -webkit-app-region: no-drag;
+    position: fixed;
+    top: 0px;
+    right: 6px;
+}
+
+
+@font-face {
+    font-family: 'ubuntu-bold';
+    src: url('../../app/fonts/Ubuntu-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'ubuntu-bold-italic';
+    src: url('../../app/fonts/Ubuntu-BoldItalic.ttf');
+}
+
+@font-face {
+    font-family: 'ubuntu-italic';
+    src: url('../../app/fonts/Ubuntu-Italic.ttf');
+}
+
+@font-face {
+    font-family: 'ubuntu-light';
+    src: url('../../app/fonts/Ubuntu-Light.ttf');
+}
+
+@font-face {
+    font-family: 'ubuntu-light-italic';
+    src: url('../../app/fonts/Ubuntu-LightItalic.ttf');
+}
+
+@font-face {
+    font-family: 'ubuntu-medium';
+    src: url('../../app/fonts/Ubuntu-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'ubuntu-medium-italic';
+    src: url('../../app/fonts/Ubuntu-MediumItalic.ttf');
+}
+
+@font-face {
+    font-family: 'ubuntu-regular';
+    src: url('../../app/fonts/Ubuntu-Regular.ttf');
+}
