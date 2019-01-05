@@ -55,7 +55,6 @@ small {
     cursor: pointer;
 }
 
-
 .col-12 {
     width: 100%;
 }
@@ -80,6 +79,8 @@ small {
     width: 20%;
 }
 
+
+/* Fontes */
 
 @font-face {
     font-family: 'ubuntu-bold';
