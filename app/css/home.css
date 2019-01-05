@@ -1,6 +1,36 @@
 .close-btn {
-    font-size: 20px;
+    font-size: 22px;
     font-family: ubuntu-bold;
     text-decoration: none;
     color: white;
+}
+
+h1 {
+    font-family: ubuntu-bold;
+    text-align: center;
+}
+
+.content {
+    text-align: center;
+}
+
+.main-text {
+    font-family: ubuntu-light;
+}
+
+.git-link {
+    text-decoration: none;
+    color: white;
+    font-family: ubuntu-italic;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.footer {
+    position:absolute;
+    bottom:0;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    margin-bottom: 5%;
 }

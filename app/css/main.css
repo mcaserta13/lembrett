@@ -21,6 +21,65 @@ html {
     right: 6px;
 }
 
+.content-inline {
+    display: inline;
+}
+
+.content-center {
+    margin: 0 auto;
+    display: block;
+}
+
+small {
+    font-family: ubuntu-light;
+    font-size: 14px;
+}
+
+.btn-green {
+    margin-top: 5%;
+    background-color: #55efc4;
+    border-radius: 5px;
+    color: white;
+    padding: 5%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-white {
+    margin-top: 5%;
+    background-color: white;
+    border-radius: 5px;
+    color: #74b9ff;
+    padding: 5%;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+.col-12 {
+    width: 100%;
+}
+
+.col-10 {
+    width: 90%;
+}
+
+.col-8 {
+    width: 80%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-4 {
+    width: 40%;
+}
+
+.col-2 {
+    width: 20%;
+}
+
 
 @font-face {
     font-family: 'ubuntu-bold';

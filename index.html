@@ -8,20 +8,30 @@
 </head>
 
 <body class="bg-default">
-    <div id="title-bar">
-        <div id="title-bar-btns">
-            <button class="close-btn" id="btnClose">x</button>
-        </div>
+
+    <div class="logo-content">
+        <h1>Lembrett</h1>
     </div>
-    <h1>Ubuntu
-    </h1>
-    We are using node
-    <script>document.write(process.versions.node)</script>,
-    Chrome
-    <script>document.write(process.versions.chrome)</script>,
-    and Electron
-    <script>document.write(process.versions.electron)</script>.
+
+    <div class="content-inline content content-center col-10">
+        <small>O lembrett irá disparar uma notificação no seu computador quando o horário do lembrete chegar :)</small>
+    </div>
+
+    <br><br><br>
+    <div class="content-center btn-green col-8">
+        Novo lembrete!
+    </div>
+    <div class="content-center btn-white col-8">
+        Meus lembretes
+    </div>
+
+    <div class="content-center footer col-10">
+        <a data-href="https://github.com/mcaserta13/lembrett" class="git-link" id="btnOpenGit">@mcaserta13</a>
+    </div>
 </body>
 
-<script src="app/js/index.js"></script>
+<script>
+    require('./index.js')
+</script>
+
 </html>
