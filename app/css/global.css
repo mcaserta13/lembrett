@@ -132,6 +132,89 @@ input[type=date]::-webkit-inner-spin-button, input[type="time"]::-webkit-inner-s
     width: 20%;
 }
 
+/* Toast */
+#toast {
+    visibility: hidden;
+    max-width: 200px;
+    height: 50px;
+    /*margin-left: -125px;*/
+    margin: auto;
+    background-color: #333;
+    font-family: ubuntu-light;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;right:0;
+    bottom: 30px;
+    font-size: 17px;
+    white-space: nowrap;
+}
+
+#toast #desc{
+    font-family: ubuntu-light;
+    color: #fff;
+    font-size: 13px;
+    padding: 16px;
+    overflow: hidden;
+	white-space: nowrap;
+}
+
+#toast.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, expand 0.5s 0.5s,stay 3s 1s, shrink 0.5s 2s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, expand 0.5s 0.5s,stay 1s 1s, shrink 0.5s 1s, fadeout 0.5s 2s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes expand {
+    from {min-width: 50px} 
+    to {min-width: 200px}
+}
+
+@keyframes expand {
+    from {min-width: 50px}
+    to {min-width: 200px}
+}
+@-webkit-keyframes stay {
+    from {min-width: 200px} 
+    to {min-width: 200px}
+}
+
+@keyframes stay {
+    from {min-width: 200px}
+    to {min-width: 200px}
+}
+@-webkit-keyframes shrink {
+    from {min-width: 200px;} 
+    to {min-width: 50px;}
+}
+
+@keyframes shrink {
+    from {min-width: 200px;} 
+    to {min-width: 50px;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 60px; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 60px; opacity: 0;}
+}
+
 /* Fontes */
 
 @font-face {
