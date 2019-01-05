@@ -45,6 +45,10 @@ small {
     cursor: pointer;
 }
 
+.btn-green:hover {
+    background: #00b894;
+}
+
 .btn-white {
     margin-top: 5%;
     background-color: white;
@@ -53,6 +57,11 @@ small {
     padding: 5%;
     text-align: center;
     cursor: pointer;
+}
+
+.btn-white:hover {
+    background-color: #0984e3;
+    color: white;
 }
 
 .col-12 {
