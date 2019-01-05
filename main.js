@@ -14,12 +14,16 @@ function createWindow() {
 
 app.on('ready', createWindow)
 
-// Encerrar a aplicação
-ipcMain.on('btnCloseTapped', function (event, arg) {
-    app.quit()
-});
-
+// Abrir a URL do Git
 ipcMain.on('btnOpenGit', function (event, arg) {
     event.preventDefault();
     shell.openExternal(arg);
+});
+
+// Novo lembrete
+ipcMain.on('btnNewReminder', function (event, arg) {
+});
+
+// Meus lembretes
+ipcMain.on('btnMyReminders', function (event, arg) {
 });
