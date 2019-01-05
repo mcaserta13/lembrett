@@ -133,6 +133,25 @@ input[type=date]::-webkit-inner-spin-button, input[type="time"]::-webkit-inner-s
 }
 
 /* Toast */
+#required-toast {
+    visibility: hidden;
+    max-width: 200px;
+    height: 50px;
+    /*margin-left: -125px;*/
+    margin: auto;
+    background-color: rgb(167, 29, 29);
+    font-family: ubuntu-light;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;right:0;
+    bottom: 30px;
+    font-size: 17px;
+    white-space: nowrap;
+}
+
 #toast {
     visibility: hidden;
     max-width: 200px;
@@ -152,7 +171,7 @@ input[type=date]::-webkit-inner-spin-button, input[type="time"]::-webkit-inner-s
     white-space: nowrap;
 }
 
-#toast #desc{
+#toast #desc, #required-toast #desc{
     font-family: ubuntu-light;
     color: #fff;
     font-size: 13px;
@@ -161,7 +180,7 @@ input[type=date]::-webkit-inner-spin-button, input[type="time"]::-webkit-inner-s
 	white-space: nowrap;
 }
 
-#toast.show {
+#toast.show, #required-toast.show {
     visibility: visible;
     -webkit-animation: fadein 0.5s, expand 0.5s 0.5s,stay 3s 1s, shrink 0.5s 2s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, expand 0.5s 0.5s,stay 1s 1s, shrink 0.5s 1s, fadeout 0.5s 2s;

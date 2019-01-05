@@ -7,7 +7,7 @@ var mainWindow
 function createWindow() {
 
     // Criar o componente da tela
-    mainWindow = new BrowserWindow({ width: 300, height: 500, resizable: true, icon: path.join(__dirname, 'app/icon/reminder.ico') })
+    mainWindow = new BrowserWindow({ width: 350, height: 550, resizable: true, icon: path.join(__dirname, 'app/icon/reminder.ico') })
 
     //mainWindow.setMenu(null)
 

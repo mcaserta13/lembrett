@@ -21,14 +21,14 @@
 
     <div class="content-center col-12">
         <label class="col-6">Dia</label>
-        <input class="col-6" type="date">
+        <input class="col-6" type="date" id="inptDate">
 
         <br>
         <label class="col-6">Horário</label>
-        <input class="col-6" type="time">
+        <input class="col-6" type="time" id="inptTime">
 
-        <br><br>
-        <input type="text" placeholder="reunião, remédio...">
+        <br>
+        <input class="col-8" type="text" placeholder="Ex: reunião na empresa" id="inptDescription">
     </div>
 
     <br><br>
@@ -42,6 +42,10 @@
 
     <div id="toast">
         <div id="desc">Lembrete criado :)</div>
+    </div>
+
+    <div id="required-toast">
+        <div id="desc">Preencha todos os campos!</div>
     </div>
 </body>
 
