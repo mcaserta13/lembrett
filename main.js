@@ -1,21 +1,21 @@
 const { app, BrowserWindow, ipcMain, Menu } = require('electron')
 var path = require('path')
 var shell = require('electron').shell
-const scheduler = require('node-schedule');
-const notifier = require('node-notifier');
-const sqlite3 = require('sqlite3').verbose();
+const scheduler = require('node-schedule')
+const notifier = require('node-notifier')
+const sqlite3 = require('sqlite3').verbose()
 
-var db = new sqlite3.Database('./lembrett.sql');
+var db = new sqlite3.Database('./lembrett.sql')
 
 var mainWindow
 
 function createWindow() {
 
     // Criar o componente da tela
-    mainWindow = new BrowserWindow({ width: 350, height: 620, resizable: false, icon: path.join(__dirname, 'app/icon/reminder.png')})
+    mainWindow = new BrowserWindow({ width: 350, height: 620, resizable: true, icon: path.join(__dirname, 'app/icon/reminder.png')})
 
-    var template = [];
-    Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+    // var template = []
+    // Menu.setApplicationMenu(Menu.buildFromTemplate(template))
 
     mainWindow.setMenu(null)
     
@@ -28,7 +28,7 @@ function createWindow() {
             // Criar as tarefas scheduladas salvas no banco de dados
             createSchedules()
         }
-    });
+    })
 
     // Carregar o arquivo index.html
     mainWindow.loadFile('index.html')
@@ -49,6 +49,7 @@ ipcMain.on('btnNewReminder', function (event, arg) {
 
 // Meus lembretes
 ipcMain.on('btnMyReminders', function (event, arg) {
+    mainWindow.loadURL(`file://${__dirname}/app/html/my-reminders.html`)
 })
 
 // Criar novo lembrete
@@ -72,7 +73,7 @@ async function scheduleNotification(description, date, horary, repeat, notificat
         console.log('Lembrete schedulado em : ' + scheduledDate)
         scheduler.scheduleJob(scheduledDate, function () {
             notify(description, notificationId)
-        });
+        })
     } else {
         var splittedHorary = horary.split(':')
         scheduler.scheduleJob(splittedHorary[1] + ' ' + splittedHorary[0] + ' * * *', function () {
@@ -89,7 +90,7 @@ async function notify(description, id) {
         message: description,
         priority: 2,
         icon: './app/icon/reminder.png'
-    });
+    })
 
     if (id > 0) {
         // Remover o lembrete
@@ -112,7 +113,7 @@ async function createSchedules() {
                 console.log('Lembrete schedulado em : ' + scheduledDate)
                 scheduler.scheduleJob(scheduledDate, function () {
                     notify(description, id)
-                });
+                })
             } else {
                 var splittedHorary = horary.split(':')
                 console.log("Lembrete schedulado diariamente as " + horary)
