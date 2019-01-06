@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 var path = require('path')
 var shell = require('electron').shell
+const scheduler = require("node-schedule");
 const notifier = require('node-notifier');
 
 var mainWindow
@@ -42,10 +43,32 @@ ipcMain.on('btnCancel', function (event, arg) {
     mainWindow.loadURL(`file://${__dirname}/index.html`)
 })
 
+// Novo lembrete schedulado
+ipcMain.on('newSchedule', function(event, arg) {
+    console.log("RECEBIDO NO NEW SCHEDULE")
+    scheduleNotification(arg[0], arg[1], arg[2], arg[3])
+})
+
+// Schedular a notificação no SO
+async function scheduleNotification(description, date, horary, repeat) {
+    if (repeat <= 0) {
+        var scheduledDate = new Date(date + " " + horary)
+
+        console.log("DATA SCHEDULADA " + scheduledDate)
+        scheduler.scheduleJob(scheduledDate, function () {
+            console.log("CHEGOU A HORA")
+            notify(description)
+        });
+    }
+}
+
 // Notificar o SO
-/*
+async function notify(description) {
+    // Notificar o SO
     notifier.notify({
-    title: 'My notification',
-    message: 'Hello, there!'
-  });
-*/
+        title: 'Chegou a hora! - lembrett -',
+        message: description,
+        priority: 2,
+        icon: './app/icon/reminder.ico'
+    });
+}

@@ -9,35 +9,38 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('./lembrett.sql');
 
 // Clique no botão para criar novo lembrete
-btnCreate.addEventListener('click', function() {
+btnCreate.addEventListener('click', function () {
 
     if (isEmpty(inptDescription.value) || isEmpty(inptDate.value) || isEmpty(inptDescription.value)) {
         launch_required_toast()
     } else {
-        insertNewReminder(inptDescription.value, inptDate.value + " " + inptTime.value, 0)
+        insertNewReminder(inptDescription.value, inptDate.value, inptTime.value, 0)
     }
 })
 
-function isEmpty(str){
+function isEmpty(str) {
     return !str.replace(/\s+/, '').length;
 }
 
 // Clique no botão para cencelar
-btnCancel.addEventListener('click', function() {
+btnCancel.addEventListener('click', function () {
     ipcRen.send('btnCancel')
 })
 
 // Inserir novo lembrete no banco de dados
-function insertNewReminder(description, date, repeat){
-    let stmt = db.prepare("INSERT INTO reminder (description, date_remind, repeat) VALUES (?,?, ?)")
-    stmt.run(description, date, repeat, function(){
+function insertNewReminder(description, date, horary, repeat) {
+    let stmt = db.prepare("INSERT INTO reminder (description, date_remind, horary_remind, repeat, read) VALUES (?,?,?,?,?)")
+    stmt.run(description, date, horary, repeat, 0, function () {
+        ipcRen.send('newSchedule', [description, date, horary, repeat])
         listReminders()
         launch_toast()
     })
 }
 
-function listReminders(){
-    db.each("SELECT * FROM reminder", function(err, row) {
+function listReminders() {
+    console.log("LIST REMINDER");
+    db.each("SELECT * FROM reminder", function (err, row) {
+        console.log(err);
         console.log(row)
     });
 }
@@ -46,15 +49,15 @@ function listReminders(){
 function launch_toast() {
     var x = document.getElementById("toast")
     x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
-    setTimeout(function() {
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
+    setTimeout(function () {
         ipcRen.send('btnCancel')
-    }, 2000)    
+    }, 2000)
 }
 
 // Exibir toast de campos requeridos
 function launch_required_toast() {
     var x = document.getElementById("required-toast")
     x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
 }
