@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain, Menu } = require('electron')
 var path = require('path')
 var shell = require('electron').shell
 const scheduler = require('node-schedule');
@@ -12,9 +12,10 @@ var mainWindow
 function createWindow() {
 
     // Criar o componente da tela
-    mainWindow = new BrowserWindow({ width: 350, height: 620, resizable: true, icon: path.join(__dirname, 'app/icon/reminder.png') })
+    mainWindow = new BrowserWindow({ width: 350, height: 620, resizable: false, icon: path.join(__dirname, 'app/icon/reminder.png')})
 
-    mainWindow.setMenu(null)
+    var template = [];
+    Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
     // Verificar se a tabela já existe
     tableExists(function(exists) {
