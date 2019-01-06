@@ -17,6 +17,8 @@ function createWindow() {
     var template = [];
     Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
+    mainWindow.setMenu(null)
+    
     // Verificar se a tabela já existe
     tableExists(function(exists) {
         if (exists) {
