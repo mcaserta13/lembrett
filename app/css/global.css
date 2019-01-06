@@ -36,6 +36,28 @@ small {
     font-size: 14px;
 }
 
+select {
+    padding: 5%;
+    font-family: ubuntu-bold;
+    background: none;
+    border: none;
+    color: white;
+    border-bottom: 1.3px solid white;
+}
+
+select option {
+    background: #74b9ff;
+    font-family: ubuntu-bold;
+    color: #fff;
+    text-shadow: none;
+    border: none;
+    outline: none;
+}
+
+select:focus {
+    outline: none;
+}
+
 input[type="text"] {
     padding: 5%;
     font-family: ubuntu-bold;

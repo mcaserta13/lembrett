@@ -1,17 +1,26 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 var path = require('path')
 var shell = require('electron').shell
-const scheduler = require("node-schedule");
+const scheduler = require('node-schedule');
 const notifier = require('node-notifier');
+const sqlite3 = require('sqlite3').verbose();
+
+var db = new sqlite3.Database('./lembrett.sql');
 
 var mainWindow
 
 function createWindow() {
 
     // Criar o componente da tela
-    mainWindow = new BrowserWindow({ width: 350, height: 550, resizable: true, icon: path.join(__dirname, 'app/icon/reminder.ico') })
+    mainWindow = new BrowserWindow({ width: 350, height: 620, resizable: true, icon: path.join(__dirname, 'app/icon/reminder.ico') })
 
-   // mainWindow.setMenu(null)
+    mainWindow.setMenu(null)
+
+    // Limpar todos lembretes antigos que não repetem
+    cleanOldReminders()
+
+    // Criar as tarefas scheduladas salvas no banco de dados
+    createSchedules()
 
     // Carregar o arquivo index.html
     mainWindow.loadFile('index.html')
@@ -44,31 +53,79 @@ ipcMain.on('btnCancel', function (event, arg) {
 })
 
 // Novo lembrete schedulado
-ipcMain.on('newSchedule', function(event, arg) {
-    console.log("RECEBIDO NO NEW SCHEDULE")
-    scheduleNotification(arg[0], arg[1], arg[2], arg[3])
+ipcMain.on('newSchedule', function (event, arg) {
+    scheduleNotification(arg[0], arg[1], arg[2], arg[3], arg[4])
 })
 
 // Schedular a notificação no SO
-async function scheduleNotification(description, date, horary, repeat) {
+async function scheduleNotification(description, date, horary, repeat, notificationId) {
     if (repeat <= 0) {
-        var scheduledDate = new Date(date + " " + horary)
-
-        console.log("DATA SCHEDULADA " + scheduledDate)
+        var scheduledDate = new Date(date + ' ' + horary)
+        console.log('Lembrete schedulado em : ' + scheduledDate)
         scheduler.scheduleJob(scheduledDate, function () {
-            console.log("CHEGOU A HORA")
-            notify(description)
+            notify(description, notificationId)
         });
+    } else {
+        var splittedHorary = horary.split(':')
+        scheduler.scheduleJob(splittedHorary[1] + ' ' + splittedHorary[0] + ' * * *', function () {
+            notify(description, 0)
+        })
     }
 }
 
 // Notificar o SO
-async function notify(description) {
+async function notify(description, id) {
     // Notificar o SO
     notifier.notify({
-        title: 'Chegou a hora! - lembrett -',
+        title: 'Chegou a hora!',
         message: description,
         priority: 2,
         icon: './app/icon/reminder.ico'
     });
+
+    if (id > 0) {
+        // Remover o lembrete
+        removeScheduled(id)
+    }
+}
+
+// Criar as notificações scheduladas de acordo com o banco de dados
+async function createSchedules() {
+    db.each('SELECT * FROM reminder', function (err, row) {
+        var id = row.id
+        var description = row.description
+        var date = row.date_remind
+        var horary = row.horary_remind
+        var repeat = row.repeat
+
+        if (repeat <= 0) {
+            var scheduledDate = new Date(date + ' ' + horary)
+            console.log('Lembrete schedulado em : ' + scheduledDate)
+            scheduler.scheduleJob(scheduledDate, function () {
+                notify(description, id)
+            });
+        } else {
+            var splittedHorary = horary.split(':')
+            console.log("Lembrete schedulado diariamente as " + horary)
+            scheduler.scheduleJob(splittedHorary[1] + ' ' + splittedHorary[0] + ' * * *', function () {
+                notify(description, 0)
+            })
+        }
+    });
+}
+
+// Remover um lembrete do banco de dados de acordo com o id
+async function removeScheduled(id) {
+    let stmt = db.prepare('DELETE FROM reminder WHERE id = ?')
+    stmt.run(id, function () {
+        console.log("Lembrete de código #" + id + " removido!")
+    })
+}
+
+// Remover lembretes antigos
+function cleanOldReminders() {
+    let stmt = db.prepare("DELETE FROM reminder WHERE repeat = 0 AND (date('now') > date(date_remind) AND time('now', '-2 hours') > time(horary_remind)) OR (date('now') = date(date_remind) AND time('now', '-2 hours') > time(horary_remind))")
+    stmt.run(function (e, row) {
+        console.log(row)
+    })
 }

@@ -20,8 +20,17 @@
     <br>
 
     <div class="content-center col-12">
-        <label class="col-6">Dia</label>
-        <input class="col-6" type="date" id="inptDate">
+
+        <select id="sltRepeat">
+            <option value="1">Diariamente</option>
+            <option value="0">Data específica</option>
+        </select>
+        <br>
+
+        <div id="dvDate" style="display: none;">
+            <label class="col-6">Dia</label>
+            <input class="col-6" type="date" id="inptDate">
+        </div>
 
         <br>
         <label class="col-6">Horário</label>
