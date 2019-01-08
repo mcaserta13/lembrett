@@ -11,15 +11,13 @@ var db = new sqlite3.Database(dbPath)
 var mainWindow
 
 function createWindow() {
-
-    console.log(__dirname)
     // Criar o componente da tela
-    mainWindow = new BrowserWindow({ width: 350, height: 620, resizable: true, icon: path.join(__dirname, 'app/icon/reminder.png')})
+    mainWindow = new BrowserWindow({ width: 350, height: 620, resizable: false, icon: path.join(__dirname, 'app/icon/reminder.png')})
 
-    // var template = []
-    // Menu.setApplicationMenu(Menu.buildFromTemplate(template))
+    var template = []
+    Menu.setApplicationMenu(Menu.buildFromTemplate(template))
 
-    // mainWindow.setMenu(null)
+    mainWindow.setMenu(null)
     
     // Verificar se a tabela já existe
     tableExists(function(exists) {
