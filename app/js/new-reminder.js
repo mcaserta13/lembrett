@@ -6,9 +6,11 @@ const inptTime = document.getElementById('inptTime')
 const inptDescription = document.getElementById('inptDescription')
 const sltRepeat = document.getElementById('sltRepeat')
 const dvDate = document.getElementById('dvDate')
-const sqlite3 = require('sqlite3').verbose();
 
-var db = new sqlite3.Database('./lembrett.sql');
+const sqlite3 = require('sqlite3').verbose();
+const path = require('path')
+const dbPath = path.resolve(__dirname, 'lembrett.db')
+var db = new sqlite3.Database(dbPath)
 
 // Change no select
 sltRepeat.addEventListener('change', function(){

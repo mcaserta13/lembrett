@@ -4,7 +4,9 @@ const btnBack = document.getElementById('btnBack')
 const ipcRen = require('electron').ipcRenderer
 const sqlite3 = require('sqlite3').verbose();
 
-var db = new sqlite3.Database('./lembrett.sql');
+const path = require('path')
+const dbPath = path.resolve(__dirname, 'lembrett.db')
+var db = new sqlite3.Database(dbPath)
 
 document.addEventListener('DOMContentLoaded', populateList);
 
