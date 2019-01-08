@@ -9,7 +9,7 @@
     "buildLinux": "electron-packager . app --platform linux --arch x64 --out dist/ --executableName lembrett",
     "deb64": "electron-installer-debian --src dist/app-linux-x64/ --arch amd64 --config build/configLinux.json",
     "buildWindows": "electron-packager . app --platform win32 --arch x64 --out dist/",
-    "win": "electron-installer-windows --src dist/app-win32-x64/ --executableName lembrett --config build/config.json"
+    "win": "electron-installer-windows --src dist/app-win32-x64/ --executableName lembrett --config build/configWindows.json"
   },
   "author": "Maurício Caserta",
   "license": "ISC",
