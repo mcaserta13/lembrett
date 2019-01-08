@@ -1,11 +1,7 @@
 {
-    "dest": "dist/installers/",
-    "icon": "resources/reminder.png",
-    "tags": [
-      "Utility"
-    ],
-    "authors": [
-      "Maurício Caserta"
-    ],
-    "iconUrl": "resources/reminder.png"
-  }
+  "dest": "release-builds/",
+  "icon": "resources/reminder.png",
+  "categories": [
+    "Utility"
+  ]
+}

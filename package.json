@@ -6,10 +6,12 @@
   "scripts": {
     "start": "electron .",
     "rebuild": "electron-rebuild -f -w sqlite3",
-    "buildLinux": "electron-packager . app --platform linux --arch x64 --out dist/ --executableName lembrett",
-    "deb64": "electron-installer-debian --src dist/app-linux-x64/ --arch amd64 --config build/configLinux.json",
-    "buildWindows": "electron-packager . app --platform win32 --arch x64 --out dist/",
-    "win": "electron-installer-windows --src dist/app-win32-x64/ --executableName lembrett --config build/configWindows.json"
+    "package-linux": "electron-packager . lembrett --overwrite --asar=true --platform=linux --arch=x64 --icon=resources/reminder.png --prune=true --out=release-builds",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=resources/reminder.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . lembrett --overwrite --asar=true --platform=win32 --arch=ia32 --icon=resources/reminder.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"lembrett\"",  
+    "installer-win": "node installers/windows/createinstaller.js",
+    "installer-debian": "electron-installer-debian --src release-builds/lembrett-linux-x64/ --arch amd64 --config configLinux.json",
+    "installer-mac": "electron-installer-dmg ./release-builds/lembrett-darwin-x64/lembrett.app lembrett-app --out=release-builds --overwrite --icon=resources/reminder.icns"
   },
   "author": "Maurício Caserta",
   "license": "ISC",
@@ -17,6 +19,7 @@
     "electron": "^4.0.1",
     "electron-installer-debian": "^1.1.0",
     "electron-installer-dmg": "^2.0.0",
+    "electron-installer-windows": "^1.1.0",
     "electron-packager": "^13.0.1",
     "electron-rebuild": "^1.8.2"
   },

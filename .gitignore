@@ -1,4 +1,4 @@
 node_modules/
 package-lock.json
 lembrett.sql
-dist/
+release-builds/
