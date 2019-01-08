@@ -7,3 +7,6 @@ label {
     font-family: ubuntu-bold;
 }
 
+.btn-back {
+    cursor: pointer;
+}

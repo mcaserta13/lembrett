@@ -7,6 +7,8 @@
     -webkit-box-shadow: 4px 4px 22px -6px rgba(0,0,0,0.82);
     -moz-box-shadow: 4px 4px 22px -6px rgba(0,0,0,0.82);
     box-shadow: 4px 4px 22px -6px rgba(0,0,0,0.82);
+    display: flex;
+    justify-content: space-between;
 }
 
 .card-title {
@@ -25,9 +27,14 @@
     font-size: 20px;
 }
 
+.btn-remove {
+    cursor: pointer;
+}
+
 .card-options {
     vertical-align: middle;
     display: table-cell;
+    text-align: right;
 }
 
 .col-12, .col-10, .col-2 {

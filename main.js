@@ -66,6 +66,11 @@ ipcMain.on('newSchedule', function (event, arg) {
     scheduleNotification(arg[0], arg[1], arg[2], arg[3], arg[4])
 })
 
+// Remover scheduled
+ipcMain.on('removeScheduled', function(event, arg) {
+    removeScheduled(arg[0])
+})
+
 // Schedular a notificação no SO
 async function scheduleNotification(description, date, horary, repeat, notificationId) {
     if (repeat <= 0) {
