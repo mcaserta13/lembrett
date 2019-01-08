@@ -5,7 +5,7 @@ const ipcRen = require('electron').ipcRenderer
 const sqlite3 = require('sqlite3').verbose();
 
 const path = require('path')
-const dbPath = path.resolve(__dirname, 'lembrett.db')
+const dbPath = path.resolve(__dirname, '../../lembrett.sql')
 var db = new sqlite3.Database(dbPath)
 
 document.addEventListener('DOMContentLoaded', populateList);
@@ -16,7 +16,10 @@ btnBack.addEventListener('click', function () {
 
 $('body').delegate('.btn-remove', 'click', function () {
     ipcRen.send('removeScheduled', [$(this).attr('data-id')])
-    populateList()
+
+    setTimeout(() => {  
+        populateList()
+    }, 500);
 })
 
 function populateList() {

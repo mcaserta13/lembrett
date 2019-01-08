@@ -9,7 +9,7 @@ const dvDate = document.getElementById('dvDate')
 
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path')
-const dbPath = path.resolve(__dirname, 'lembrett.db')
+const dbPath = path.resolve(__dirname, '../../lembrett.sql')
 var db = new sqlite3.Database(dbPath)
 
 // Change no select

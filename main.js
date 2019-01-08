@@ -1,17 +1,18 @@
 const { app, BrowserWindow, ipcMain, Menu } = require('electron')
-var path = require('path')
 var shell = require('electron').shell
 const scheduler = require('node-schedule')
 const notifier = require('node-notifier')
-const sqlite3 = require('sqlite3').verbose()
 
-const dbPath = path.resolve(__dirname, 'lembrett.db')
+const sqlite3 = require('sqlite3').verbose();
+const path = require('path')
+const dbPath = path.resolve(__dirname, 'lembrett.sql')
 var db = new sqlite3.Database(dbPath)
 
 var mainWindow
 
 function createWindow() {
 
+    console.log(__dirname)
     // Criar o componente da tela
     mainWindow = new BrowserWindow({ width: 350, height: 620, resizable: true, icon: path.join(__dirname, 'app/icon/reminder.png')})
 
