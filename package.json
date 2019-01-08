@@ -1,16 +1,23 @@
 {
   "name": "lembrett",
   "version": "1.0.0",
-  "description": "Aplicação para notificação de lembretes",
+  "description": "Aplicativo para te ajudar a lembrar das tarefas mais importantes do dia-a-dia :)",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "rebuild": "electron-rebuild -f -w sqlite3"
+    "rebuild": "electron-rebuild -f -w sqlite3",
+    "buildLinux": "electron-packager . app --platform linux --arch x64 --out dist/ --executableName lembrett",
+    "deb64": "electron-installer-debian --src dist/app-linux-x64/ --arch amd64 --config build/configLinux.json",
+    "buildWindows": "electron-packager . app --platform win32 --arch x64 --out dist/",
+    "win": "electron-installer-windows --src dist/app-win32-x64/ --executableName lembrett --config build/config.json"
   },
   "author": "Maurício Caserta",
   "license": "ISC",
   "devDependencies": {
     "electron": "^4.0.1",
+    "electron-installer-debian": "^1.1.0",
+    "electron-installer-dmg": "^2.0.0",
+    "electron-packager": "^13.0.1",
     "electron-rebuild": "^1.8.2"
   },
   "dependencies": {
