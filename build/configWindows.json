@@ -1,11 +1,11 @@
 {
-    "dest": "dist/installers/",
-    "icon": "resources/reminder.png",
+    "dest": "release-builds/",
+    "icon": "C:/Users/mauri/Development/lembrett/resources/reminder.ico",
     "tags": [
       "Utility"
     ],
     "authors": [
       "Maurício Caserta"
     ],
-    "iconUrl": "resources/reminder.png"
+    "iconUrl": "C:/Users/mauri/Development/lembrett/resources/reminder.ico"
   }

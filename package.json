@@ -8,16 +8,23 @@
     "rebuild": "electron-rebuild -f -w sqlite3",
     "package-linux": "electron-packager . lembrett --overwrite --asar=true --platform=linux --arch=x64 --icon=resources/reminder.png --prune=true --out=release-builds",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=resources/reminder.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . lembrett --overwrite --asar=true --platform=win32 --arch=ia32 --icon=resources/reminder.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"lembrett\"",  
-    "installer-win": "node installers/windows/createinstaller.js",
+    "package-win": "electron-packager . lembrett --overwrite --asar=true --platform=win32 --arch=ia32 --icon=resources/reminder.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"lembrett\"",
+    "installer-win": "electron-installer-windows --src release-builds/lembrett-win32-ia32/ --config build/configWindows.json",
     "installer-debian": "electron-installer-debian --src release-builds/lembrett-linux-x64/ --arch amd64 --config configLinux.json",
-    "installer-mac": "electron-installer-dmg ./release-builds/lembrett-darwin-x64/lembrett.app lembrett --out=release-builds --overwrite --icon=resources/reminder.icns"
+    "installer-mac": "electron-installer-dmg ./release-builds/lembrett-darwin-x64/lembrett.app lembrett --out=release-builds --overwrite --icon=resources/reminder.icns",
+    "fullBuild": "npm run package-linux && npm run installer-debian && npm run package-mac && npm run installer-mac && npm run package-win && npm run installer-win",
+    "winBuild": "npm run package-win && npm run installer-win",
+    "linuxBuild": "npm run package-linux && npm run installer-debian",
+    "macBuild": "npm run package-mac && npm run installer-mac"
   },
-  "author": "Maurício Caserta",
+  "author": {
+    "name": "Maurício Caserta",
+    "email": "mauriciocaserta@gmail.com",
+    "url": "http://github.com/mcaserta13"
+  },
   "license": "ISC",
   "devDependencies": {
     "electron": "^4.0.1",
-    "electron-installer-debian": "^1.1.0",
     "electron-installer-dmg": "^2.0.0",
     "electron-installer-windows": "^1.1.0",
     "electron-packager": "^13.0.1",
@@ -27,5 +34,8 @@
     "node-notifier": "^5.3.0",
     "node-schedule": "^1.3.1",
     "sqlite3": "^4.0.4"
+  },
+  "optionalDependencies": {
+    "electron-installer-debian": "^1.1.0"
   }
 }
