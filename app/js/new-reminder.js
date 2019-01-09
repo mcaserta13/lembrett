@@ -1,4 +1,5 @@
 const ipcRen = require('electron').ipcRenderer
+
 const btnCreate = document.getElementById('btnCreate')
 const btnCancel = document.getElementById('btnCancel')
 const inptDate = document.getElementById('inptDate')
@@ -8,10 +9,13 @@ const sltRepeat = document.getElementById('sltRepeat')
 const dvDate = document.getElementById('dvDate')
 
 const sqlite3 = require('sqlite3').verbose();
+const app = require('electron').remote.app
+
 const path = require('path')
-const dbPath = path.resolve(__dirname, '../../lembrett.sql')
+const dbPath = (process.env.NODE_ENV === 'development') ? './lembrett.db' : path.resolve(app.getPath('userData'), 'lembrett.db');
 var db = new sqlite3.Database(dbPath)
 
+console.log(db)
 // Change no select
 sltRepeat.addEventListener('change', function(){
     if (this.value === '1') {

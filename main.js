@@ -5,7 +5,7 @@ const notifier = require('node-notifier')
 
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path')
-const dbPath = path.resolve(__dirname, 'lembrett.sql')
+const dbPath = (process.env.NODE_ENV === 'development') ? './lembrett.db' : path.resolve(app.getPath('userData'), 'lembrett.db');
 var db = new sqlite3.Database(dbPath)
 
 var mainWindow
